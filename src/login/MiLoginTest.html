@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试小米登陆接口</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8;">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <script src="jquery-1.9.1.min.js"></script>
+    <style type="text/css">
+        form {
+            width: 800px;
+            min-height: 500px;
+            margin: 100px auto;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background: #eee;
+            padding: 20px;
+        }
+
+        table tr td {
+            height: 60px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var uri = "https://account.xiaomi.com/oauth2/authorize?";
+            var paramClientId = "client_id=xxxxxxxxxxxxxxxxxxxx&";
+            var receiveUrl = "redirect_uri=xxxxxxxxxxxxxxxxxxxx&";
+            var paramType = "response_type=code&&skip_confirm=true";
+
+            var requestUrl = uri + paramClientId + receiveUrl + paramType;
+            $("#txtaUri").val(requestUrl);
+        });
+
+        function miLogin() {
+            var requestUrl = $("#txtaUri").val();
+            window.document.location.href = requestUrl;
+        }
+    </script>
+</head>
+<body>
+<form action="mi_login.rb" method="post">
+    <table style="width: 100%;">
+        <tr>
+            <td colspan="2">
+                <input type="button" id="btnRequest" onclick="miLogin();" style="font-size: 16px;"
+                       value="发送请求调用mi登陆接口"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="txtaUri"
+                          style="resize: none; width: 100%; min-height: 400px; font-size: 16px;"></textarea>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
